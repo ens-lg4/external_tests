@@ -67,5 +67,5 @@ install:
 
 script:
     - ck run program:request-iot-benchmark --cmd_key=benchmark-alexnet-single-device-cpu    # AlexNet benchmark
-    - ck run program:request-iot-benchmark --cmd_key="benchmark-vgg16-single-device-cpu     # VGG16 benchmark
+    - ck run program:request-iot-benchmark --cmd_key=benchmark-vgg16-single-device-cpu      # VGG16 benchmark
 

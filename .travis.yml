@@ -1,0 +1,23 @@
+os:         osx
+language:   generic
+
+install:
+    - CWD=`pwd`
+    - THIS_REPO_NAME=`basename $CWD`
+    - which -a python
+    - which -a python3
+    - python --version
+    - python3 --version
+    - python -m pip install --ignore-installed --verbose pip setuptools
+    - python -m pip install ck
+    - ck pull repo:ck-env
+    - echo 2 | ck detect platform.os --update_platform_init
+
+script:
+    - ck detect soft:compiler.python
+
+notifications:
+    email:
+        on_success: always
+        on_failure: always
+

@@ -1,20 +1,25 @@
 os:         osx
 language:   generic
 
+env:
+    matrix:
+        - WANTED_PYTHON_VERSION=2.7
+        - WANTED_PYTHON_VERSION=3.6
+
 install:
     - CWD=`pwd`
     - THIS_REPO_NAME=`basename $CWD`
-    - which -a python
-    - which -a python3
-    - python --version
-    - python3 --version
     - python -m pip install --ignore-installed --verbose pip setuptools
     - python -m pip install ck
     - ck pull repo:ck-env
     - echo 2 | ck detect platform.os --update_platform_init
+    - echo | ck detect soft:compiler.python --default_selection="$WANTED_PYTHON_VERSION" --first_match
+    - PYTHON_FILE=`ck virtual env --tags=compiler,python --shell_cmd='echo $CK_ENV_COMPILER_PYTHON_FILE'`
+    - ${PYTHON_FILE} -m pip install --ignore-installed --verbose pip setuptools
+    - ck install package:lib-python-scipy
 
 script:
-    - ck detect soft:compiler.python
+    - ck show env
 
 notifications:
     email:

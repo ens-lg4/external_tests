@@ -1,4 +1,4 @@
-= external_tests
+# external_tests
 
 This is a stub repo for developing test suites for other repos.
 

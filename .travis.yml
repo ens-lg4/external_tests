@@ -1,28 +1,47 @@
-os:         osx
-language:   generic
+# After changing this file, check it on:
+#   http://lint.travis-ci.org/
 
-env:
-    matrix:
-        - WANTED_PYTHON_VERSION=2.7
-        - WANTED_PYTHON_VERSION=3.6
+os:         linux
+language:   python
+env:        PYTHON_EXE=python
+
+python:
+    - 3.6
+    - 3.7
+    - 3.8
+    - 3.9
+
+jobs:
+  include:
+    - name: "Python 3 on macOS"
+      os: osx
+      osx_image: xcode11.2  # Python 3.7, but may change with time
+      language: shell       # 'language: python' is an error on Travis CI macOS
+      env: PYTHON_EXE=python3
+    - name: "Python 3.8.0 on Windows"
+      os: windows           # Windows 10.0.17134 N/A Build 17134
+      language: shell       # 'language: python' is an error on Travis CI Windows
+      before_install:
+        - choco install python --version 3.8.0
+        - python -m pip install --upgrade pip
+      env:
+        - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+        - PYTHON_EXE=python.exe
 
 install:
     - CWD=`pwd`
+    - PATH=$PATH:$CWD
     - THIS_REPO_NAME=`basename $CWD`
-    - python -m pip install --ignore-installed --verbose pip setuptools
-    - python -m pip install ck
-    - ck pull repo:ck-env
-    - echo 2 | ck detect platform.os --update_platform_init
-    - echo | ck detect soft:compiler.python --default_selection="$WANTED_PYTHON_VERSION" --first_match
-    - PYTHON_FILE=`ck virtual env --tags=compiler,python --shell_cmd='echo $CK_ENV_COMPILER_PYTHON_FILE'`
-    - ${PYTHON_FILE} -m pip install --ignore-installed --verbose pip setuptools
-    - ck install package:lib-python-scipy
+    - echo "TRAVIS_OS_NAME=${TRAVIS_OS_NAME}, TRAVIS_PYTHON_VERSION=${TRAVIS_PYTHON_VERSION}"
+    - echo "CWD=${CWD}, THIS_REPO_NAME=${THIS_REPO_NAME}, PATH=${PATH}"
+    - which ${PYTHON_EXE}
+    - ${PYTHON_EXE} --version
+    - wget https://raw.github.com/lehmannro/assert.sh/master/assert.sh
 
 script:
-    - ck show env
+    - my_asserts.sh
 
 notifications:
     email:
         on_success: always
         on_failure: always
-

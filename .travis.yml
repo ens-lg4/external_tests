@@ -24,6 +24,7 @@ jobs:
       before_install:
         - choco install python --version 3.8.0
         - python -m pip install --upgrade pip
+        - ln -s `which python.exe` python3
       env:
         - PATH=/c/Python38:/c/Python38/Scripts:$PATH
         - PYTHON_EXE=python.exe
@@ -41,6 +42,7 @@ install:
 script:
     - my_asserts.sh
     - if [ "$TRAVIS_OS_NAME" == "windows" ]; then /usr/bin/env python3 --version ; fi
+    - if [ "$TRAVIS_OS_NAME" == "windows" ]; then /usr/env python3 --version ; fi
     - if [ "$TRAVIS_OS_NAME" == "windows" ]; then which env ; fi
     - if [ "$TRAVIS_OS_NAME" == "windows" ]; then which python3 ; fi
 

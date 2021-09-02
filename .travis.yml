@@ -40,8 +40,5 @@ install:
 
 script:
     - my_asserts.sh
+    - if [ "$TRAVIS_OS_NAME" == "windows" ]; then /usr/bin/env python3 --version ; fi
 
-notifications:
-    email:
-        on_success: always
-        on_failure: always

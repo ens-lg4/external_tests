@@ -42,7 +42,6 @@ install:
     - echo "------------"
     - md5sum hello_world.txt
     - echo "============"
-    - echo "Expected md5sum is: a7966bf58e23583c9a5a4059383ff850"
 
 script:
     - my_asserts.sh

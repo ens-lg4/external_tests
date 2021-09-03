@@ -20,7 +20,5 @@ install:
     - appveyor DownloadFile https://raw.github.com/lehmannro/assert.sh/master/assert.sh
 
 test_script:
-    - python3 hello_world.py
     - hello_world.py
-    - bash hello_world.py
-    - bash my_asserts.sh
+    - my_asserts.sh

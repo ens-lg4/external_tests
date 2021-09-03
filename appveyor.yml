@@ -21,5 +21,4 @@ install:
 
 test_script:
     - python3 hello_world.py
-    - bash my_asserts.sh
     - my_asserts.sh

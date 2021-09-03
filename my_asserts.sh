@@ -2,6 +2,10 @@
 
 source assert.sh
 
+echo "Operating system:"
+uname
+echo "-----------------"
+
 assert 'echo "Hello, world!"' 'Hello, world!'
 assert_end built_in_command
 

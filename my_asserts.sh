@@ -3,7 +3,7 @@
 source assert.sh
 
 echo "Operating system:"
-uname
+uname -s
 echo "-----------------"
 
 assert 'echo "Hello, world!"' 'Hello, world!'

@@ -13,6 +13,10 @@ environment:
 
 init:
     - set PATH=%PYTHON%;%PYTHON%\\Scripts;%cd%;%PATH%
+    - dir %PYTHON%
+    - echo '==========='
+    - dir %PYTHON%\\Scripts
+    - echo '===================='
     - python --version
 
 install:
@@ -21,5 +25,4 @@ install:
 test_script:
     - python hello_world.py
     - bash my_asserts.sh
-
-
+    - my_asserts.sh

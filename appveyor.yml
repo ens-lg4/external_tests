@@ -13,9 +13,9 @@ environment:
 
 init:
     - set PATH=%PYTHON%;%PYTHON%\\Scripts;%cd%;%PATH%
-    - mklink python3.exe %PYTHON%\\python.exe
 
 install:
+    - mklink python3.exe %PYTHON%\\python.exe
     - python3 --version
     - appveyor DownloadFile https://raw.github.com/lehmannro/assert.sh/master/assert.sh
 

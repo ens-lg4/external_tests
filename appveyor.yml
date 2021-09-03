@@ -14,7 +14,6 @@ environment:
 init:
     - set PATH=%PYTHON%;%PYTHON%\\Scripts;%cd%;%PATH%
     - mklink python3.exe %PYTHON%\\python.exe
-    - python --version
     - python3 --version
 
 install:

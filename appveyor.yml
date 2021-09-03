@@ -13,16 +13,14 @@ environment:
 
 init:
     - set PATH=%PYTHON%;%PYTHON%\\Scripts;%cd%;%PATH%
-    - dir %PYTHON%
-    - echo '==========='
-    - dir %PYTHON%\\Scripts
-    - echo '===================='
+    - mklink %PYTHON%\\python.exe python3.exe
     - python --version
+    - python3 --version
 
 install:
     - appveyor DownloadFile https://raw.github.com/lehmannro/assert.sh/master/assert.sh
 
 test_script:
-    - python hello_world.py
+    - python3 hello_world.py
     - bash my_asserts.sh
     - my_asserts.sh

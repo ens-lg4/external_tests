@@ -14,10 +14,9 @@ environment:
 init:
     - set PATH=%PYTHON%;%PYTHON%\\Scripts;%cd%;%PATH%
     - mklink python3.exe %PYTHON%\\python.exe
-    - python3 --version
-    - rmdir C:\projects\external-tests /s /q
 
 install:
+    - python3 --version
     - appveyor DownloadFile https://raw.github.com/lehmannro/assert.sh/master/assert.sh
 
 test_script:

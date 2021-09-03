@@ -4,6 +4,10 @@ source assert.sh
 
 echo "Operating system:"
 uname -s
+echo "Which uname:"
+which uname
+echo "Which md5sum:"
+which md5sum
 echo "-----------------"
 
 assert 'echo "Hello, world!"' 'Hello, world!'

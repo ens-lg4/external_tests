@@ -5,8 +5,8 @@ source assert.sh
 assert 'echo "Hello, world!"' 'Hello, world!'
 assert_end built_in_command
 
-assert 'hello_world.py' 'Hello, world!'
-assert_end python_script
+#assert 'hello_world.py' 'Hello, world!'
+#assert_end python_script
 
 if [ `uname` = 'Darwin' ]; then
     MD5CMD="md5 -r"

@@ -5,6 +5,8 @@ source assert.sh
 assert 'echo "Hello, world!"' 'Hello, world!'
 assert_end built_in_command
 
+hello_world.py A b C d
+
 #assert 'hello_world.py' 'Hello, world!'
 #assert_end python_script
 

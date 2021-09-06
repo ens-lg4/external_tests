@@ -4,4 +4,4 @@ import sys
 
 print("Hello, world!")
 print("The args are:\n\t"+' '.join(sys.argv) )
-
+print(f"sys.platform: {sys.platform}")

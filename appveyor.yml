@@ -2,22 +2,38 @@ build: false
 
 environment:
   matrix:
-    - PYTHON: C:\Python36-x64
-      PYTHON_VERSION: 3.6
+    - job_name: Windows Py 3.6
+      image: Visual Studio 2019
+      PYTHON: C:\Python36-x64
 
-#    - PYTHON: C:\Python35-x64
-#      PYTHON_VERSION: 3.5
+    - job_name: Windows Py 3.9
+      image: Visual Studio 2019
+      PYTHON: C:\Python39-x64
 
-#    - PYTHON: C:\Python27-x64
-#      PYTHON_VERSION: 2.7
+    - job_name: MacOS Py 3.6
+      image: macos
+      stack: python 3.6
+
+    - job_name: MacOS Py 3.9
+      image: macos
+      stack: python 3.9
+
+    - job_name: Linux Py 3.6
+      image: Ubuntu
+      stack: python 3.6
+
+    - job_name: Linux Py 3.9
+      image: Ubuntu
+      stack: python 3.9
 
 init:
-    - set PATH=%PYTHON%;%PYTHON%\\Scripts;%cd%;%PATH%
+    - cmd: set PATH=%PYTHON%;%PYTHON%\\Scripts;%cd%;%PATH%
 
 install:
-    - mklink python3.exe %PYTHON%\\python.exe
+    - cmd: mklink python3.exe %PYTHON%\\python.exe
     - python3 --version
-    - appveyor DownloadFile https://raw.github.com/lehmannro/assert.sh/master/assert.sh
+    - cmd: appveyor DownloadFile https://raw.github.com/lehmannro/assert.sh/master/assert.sh
+    - sh: wget https://raw.github.com/lehmannro/assert.sh/master/assert.sh
 
 test_script:
     - hello_world.py a b c d

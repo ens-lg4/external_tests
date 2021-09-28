@@ -1,6 +1,7 @@
 build: false
 
 environment:
+  ASSERT_URL: https://raw.github.com/lehmannro/assert.sh/master/assert.sh
   matrix:
     - job_name: Windows Py 3.6
       appveyor_build_worker_image: Visual Studio 2015
@@ -28,12 +29,14 @@ environment:
 
 init:
     - cmd: set PATH=%PYTHON%;%PYTHON%\\Scripts;%cd%;%PATH%
+    - sh: export PATH=.:$PATH
+    
 
 install:
     - cmd: mklink python3.exe %PYTHON%\\python.exe
     - python3 --version
-    - cmd: appveyor DownloadFile https://raw.github.com/lehmannro/assert.sh/master/assert.sh
-    - sh: wget https://raw.github.com/lehmannro/assert.sh/master/assert.sh
+    - cmd: appveyor DownloadFile %ASSERT_URL%
+    - sh: which wget && wget $ASSERT_URL || curl -O $ASSERT_URL
 
 test_script:
     - hello_world.py a b c d

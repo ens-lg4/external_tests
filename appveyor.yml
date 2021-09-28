@@ -40,4 +40,5 @@ install:
 test_script:
     - hello_world.py a b c d
     - cmd: hello_world A B C D
-    - bash my_asserts.sh
+    - cmd: bash my_asserts.sh
+    - sh: my_asserts.sh

@@ -2,6 +2,8 @@
 
 source assert.sh
 
+set
+
 assert 'echo "Hello, world!"' 'Hello, world!'
 assert_end built_in_command
 

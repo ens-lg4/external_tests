@@ -11,21 +11,11 @@ environment:
       appveyor_build_worker_image: Visual Studio 2019
       PYTHON: C:\Python39-x64
 
-    - job_name: MacOS Py 3.6
+    - job_name: MacOS
       appveyor_build_worker_image: macos
-      appveyor_build_worker_stack: python 3.6
 
-    - job_name: MacOS Py 3.9
-      appveyor_build_worker_image: macos
-      appveyor_build_worker_stack: python 3.9
-
-    - job_name: Linux Py 3.6
+    - job_name: Linux
       appveyor_build_worker_image: Ubuntu
-      appveyor_build_worker_stack: python 3.6
-
-    - job_name: Linux Py 3.9
-      appveyor_build_worker_image: Ubuntu
-      appveyor_build_worker_stack: python 3.9
 
 init:
     - cmd: set PATH=%PYTHON%;%PYTHON%\\Scripts;%cd%;%PATH%
@@ -34,7 +24,8 @@ init:
 install:
     - cmd: mklink python3.exe %PYTHON%\\python.exe
     - python3 --version
-    - appveyor DownloadFile %ASSERT_URL%
+    - cmd: appveyor DownloadFile %ASSERT_URL%
+    - sh: appveyor DownloadFile $ASSERT_URL
 
 test_script:
     - hello_world.py a b c d

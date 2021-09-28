@@ -31,7 +31,6 @@ init:
     - cmd: set PATH=%PYTHON%;%PYTHON%\\Scripts;%cd%;%PATH%
     - sh: export PATH=.:$PATH
     
-
 install:
     - cmd: mklink python3.exe %PYTHON%\\python.exe
     - python3 --version
@@ -40,5 +39,5 @@ install:
 
 test_script:
     - hello_world.py a b c d
-    - hello_world A B C D
+    - cmd: hello_world A B C D
     - bash my_asserts.sh
